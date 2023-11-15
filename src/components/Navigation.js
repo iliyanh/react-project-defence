@@ -1,16 +1,18 @@
+import { Link } from "react-router-dom";
+
 function Navigation() {
     return (
 
         <header className="header">
-            <a href="/" className="logo">Logo</a>
+            <Link className="logo" to="/">Logo</Link>
 
             <nav className="navbar">
-                <a href="/">Home</a>
-                <a href="/catalog">Catalog</a>
-                <a href="/create">Create</a>
-                <a href="/login">Login</a>
-                <a href="/register">Register</a>
-                <a href="/logout">Logout</a>
+                <Link to="/">Home</Link>
+                <Link to="/catalog">Catalog</Link>
+                <Link to="/create">Create</Link>
+                <Link to="/login">Login</Link>
+                <Link to="/register">Register</Link>
+                <Link to="/logout">Logout</Link>
             </nav>
 
         </header>
