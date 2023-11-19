@@ -77,6 +77,19 @@ z-index: 100;
   justify-content: center;
   align-items: center;
 }
+.wrapper-home {
+  position: relative;
+  width: 105em;
+  height: 400px;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .5);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .wrapper .form-box {
   width: 100%;
   padding: 40px;
@@ -159,4 +172,39 @@ background-color: #12a987 !important;
 }
 .login-register p a:hover {
   text-decoration: underline;
+}
+.home {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 50px 8% 0;
+
+}
+/* .home-content {
+  max-width: 630px;
+} */
+.home-content h1 {
+  font-size: 50px;
+  line-height: 1.2;
+  color: white
+  
+}
+.home-content h3 {
+  font-size: 30px;
+  color: white;
+}
+.btn-explore {
+  display: inline-block;
+  padding: 10px 28px;
+  background: white;
+  border: 2px solid white;
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  font-size: 16px;
+  color: black;
+  letter-spacing: 1px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: .5s;
 }
