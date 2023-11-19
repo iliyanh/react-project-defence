@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 export const Login = () => {
     return (
-        <div className="wrapper">
+        <div className="wrapper-login">
                 <div className="form-box login">
                     <h2>Login</h2>
                     <form action="#">
