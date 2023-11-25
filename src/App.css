@@ -265,7 +265,7 @@ offer-list {
   overflow-x: auto;
 }
 
-.house-market .game {
+.house-market .house {
   display: inline-block;
   width: 500px;
   height: 250px;
@@ -273,12 +273,12 @@ offer-list {
   margin-left: 20px;
   margin-bottom: 20px;
   margin-right: 10px;
-  border: 2px solid #2e87cb;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
   border-radius: 30px;
-  background-color: #096BAB;
+  background-color: white;
 }
 
-.house-market .game-img img {
+.house-market .house-img img {
   float: left;
   border: 2px solid rgba(169, 152, 198, 0.781);
   border-radius: 50%;
@@ -287,28 +287,28 @@ offer-list {
   margin: 20px;
 }
 
-.house-market .game-info {
+.house-market .house-info {
   margin-bottom: 20px;
 }
 
-.house-market .game-info h1 {
+.house-market .house-info h1 {
   font-size: 18px;
   margin-top: 30px;
-  color: white;
+  color: black;
 }
 
-.house-market .game-info p {
+.house-market .house-info p {
   color: #050912;
   font-weight: bolder;
   margin-top: 10px;
 }
 
-.house-market .game-info span {
-  color: white;
+.house-market .house-info span {
+  color: black;
   font-weight: bolder;
 }
 
-.house-market .game .btn-details {
+.house-market .house .btn-details {
   border: 5em;
   cursor: pointer;
   outline: none;
@@ -328,16 +328,13 @@ offer-list {
   text-decoration: none;
 }
 
-.house-market .game .btn-details:hover {
+.house-market .house .btn-details:hover {
   box-shadow: 0 12px 24px rgba(128, 128, 128, 0.1);
 }
-
 .no-offer {
-  border-top: 4px solid #2e87cb;
-  border-bottom: 4px solid #2e87cb;
   border-radius: 5px;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 10px 0 rgba(0, 0, 0, 0.2);
-  background-color: #096BAB;
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+  background-color: white;
   width: 50%;
   height: 100px;
   margin: auto;
