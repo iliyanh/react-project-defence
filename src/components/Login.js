@@ -21,7 +21,7 @@ export const Login = () => {
         <div className="wrapper-login">
             <div className="form-box login">
                 <h2>Login</h2>
-                <form id="login" onSubmit={onSubmit}>
+                <form id="login" method="POST" onSubmit={onSubmit}>
                     <div className="input-box">
                         <span className="icon"><ion-icon name="mail"></ion-icon></span>
                         <input

@@ -2,10 +2,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
 import Navigation from "./components/Navigation";
-import { Route, Routes } from "react-router";
+import { Route, Routes, useNavigate } from "react-router";
 import { useState } from "react";
 
 import { AuthContext } from "./contexts/AuthContext";
+import * as authService from "./services/authService";
 
 import { Home } from "./components/Home";
 import { Catalog } from "./components/Catalog";
@@ -16,14 +17,23 @@ import { Register } from "./components/Register";
 
 
 function App() {
-    const [auth, setAuth] = useState()
+    const navigate = useNavigate();
+    const [auth, setAuth] = useState();
 
     const onLoginSubmit = async (data) => {
-        console.log(data);
+        try {
+            const { email, password } = data;
+            const result = await authService.login(email, password);
+            setAuth(result)
+            navigate("/catalog")
+        } catch (error) {
+            console.log("Email or Password doesn't match!");
+        }
+
     }
 
     return (
-        <AuthContext.Provider value={{onLoginSubmit}}>
+        <AuthContext.Provider value={{ onLoginSubmit }}>
             <div>
                 <Navigation />
 
