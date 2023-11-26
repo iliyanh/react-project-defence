@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../contexts/AuthContext";
 
-function Navigation() {
+export const Navigation = () => {
+    const { isAuthenticated, username } = useContext(AuthContext);
     return (
 
         <header className="header">
@@ -9,13 +12,22 @@ function Navigation() {
             <nav className="navbar">
                 <Link to="/">Home</Link>
                 <Link to="/catalog">For sale</Link>
-                <Link to="/create">Create</Link>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
-                <Link to="/logout">Logout</Link>
+                {isAuthenticated ?
+                    <div id="user">
+                        <Link to="/create">Create</Link>
+                        <Link to="/logout">Logout</Link>
+                        <Link to="">{username}</Link>
+                    </div>
+                    :
+                    <div id="guest">
+                        <Link to="/login">Login</Link>
+                        <Link to="/register">Register</Link>
+                    </div>
+                }
+
+
             </nav>
 
         </header>
     )
 }
-export default Navigation
