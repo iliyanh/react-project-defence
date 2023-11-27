@@ -6,6 +6,7 @@ import { useState } from "react";
 
 import { AuthContext } from "./contexts/AuthContext";
 import * as authService from "./services/authService";
+import * as propertiesService from "./services/propertiesService";
 
 import {Navigation} from "./components/Navigation";
 import { Home } from "./components/Home";
@@ -51,6 +52,11 @@ function App() {
         //await authService.logout()
         setAuth({})
     }
+    const onCreateProperty = async (data) => {
+        const newGame = await propertiesService.create(data, auth.accessToken)
+
+        console.log("success!");
+    }
 
     const context = {
         onLoginSubmit,
@@ -72,7 +78,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/catalog" element={<Catalog />} />
-                        <Route path="/create" element={<Create />} />
+                        <Route path="/create" element={<Create onCreateProperty={onCreateProperty}/>} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/logout" element={<Logout />} />
                         <Route path="/register" element={<Register />} />
