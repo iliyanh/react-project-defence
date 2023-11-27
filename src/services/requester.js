@@ -1,6 +1,7 @@
 export const host = "http://localhost:3030"
 
-async function request(method, url, data) {
+
+async function request(method, url, data, token) {
 
     const options = {
         method,
@@ -12,10 +13,9 @@ async function request(method, url, data) {
         options.body = JSON.stringify(data);
     }
 
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (user) {
-        const token = user.accessToken;
-        options.headers["X-Authorization"] = token;
+    if (token) {
+        const userToken = token.accessToken;
+        options.headers["X-Authorization"] = userToken;
     }
 
     try {
