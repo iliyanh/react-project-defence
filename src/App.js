@@ -10,7 +10,7 @@ import {propertyServiceFactory} from "./services/propertiesService";
 
 import {Navigation} from "./components/Navigation";
 import { Home } from "./components/Home";
-import { Catalog } from "./components/Catalog";
+import { Catalog } from "./components/Catalog/Catalog";
 import { Create } from "./components/Create";
 import { Login } from "./components/Login";
 import { Logout } from "./components/Logout";
@@ -25,7 +25,14 @@ function App() {
     const authService = authServiceFactory(auth.accessToken);
     const propertiesService  = propertyServiceFactory(auth.accessToken);
 
+    useEffect(() => {
+        propertiesService.getAll()
+        .then(result => {
+            setProperty(result)
+        })
+    }, []);
 
+    console.log(properties);
     const onLoginSubmit = async (data) => {
         try {
             //const { email, password } = data;
@@ -57,9 +64,9 @@ function App() {
         setAuth({})
     }
     const onCreateProperty = async (data) => {
-        const newGame = await propertiesService.create(data)
-
-        console.log("success!");
+        const newProperty = await propertiesService.create(data)
+        setProperty(state => [...state, newProperty])
+        navigate("/catalog")
     }
 
     const context = {
@@ -81,7 +88,7 @@ function App() {
                 <main id="content">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/catalog" element={<Catalog />} />
+                        <Route path="/catalog" element={<Catalog properties={properties}/>} />
                         <Route path="/create" element={<Create onCreateProperty={onCreateProperty}/>} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/logout" element={<Logout />} />

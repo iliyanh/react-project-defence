@@ -24,12 +24,12 @@ async function request(method,token, url, data) {
         const response = await fetch(host + url, options)
 
 
-        if (response.status === 403) {
-            localStorage.removeItem("user");
-        }
+        // if (response.status === 403) {
+        //     localStorage.removeItem("user");
+        // }
 
         if (response.status === 204) {
-            return response
+            return {}
         } 
         const result = await response.json()
         
