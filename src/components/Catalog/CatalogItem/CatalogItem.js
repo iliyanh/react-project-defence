@@ -16,7 +16,7 @@ export const CatalogItem = ({
             </div>
             <div className="house-info">
                 <h1>{address}</h1>
-                <p><span>Type: {type}</span>{type}</p>
+                <p><span>Type: {type}</span></p>
                 <p><span>Bedrooms: {bedrooms}</span></p>
                 <p><span>Price: {price}</span>$</p>
             </div>

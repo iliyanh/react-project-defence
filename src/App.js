@@ -32,7 +32,6 @@ function App() {
         })
     }, []);
 
-    console.log(properties);
     const onLoginSubmit = async (data) => {
         try {
             //const { email, password } = data;
@@ -79,7 +78,7 @@ function App() {
         username: auth.username,
         isAuthenticated: !!auth.accessToken,
     };
-    console.log(context["token"]);
+
     return (
         <AuthContext.Provider value={context}>
             <div>

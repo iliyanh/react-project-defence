@@ -11,7 +11,7 @@ export const Catalog = ({
                     {/* {{#each games}} */}
                     
                     {properties.map(property => 
-                        <CatalogItem key={property._id} {...properties}/>)}
+                        <CatalogItem key={property._id} {...property}/>)}
                 </div>
                 {properties.length === 0 && (
                  <div className="no-offer">
