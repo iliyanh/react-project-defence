@@ -6,6 +6,7 @@ export const Create = ({
     const {values, changeHandler, onSubmit} = useForm({
         address: "",
         type: "",
+        imageUrl: "",
         bedrooms: "",
         size: "",
         price: "",
@@ -37,6 +38,16 @@ export const Create = ({
                         onChange={changeHandler}
                         required></input>
                         <label>Type</label>
+                    </div>
+                    <div className="input-box">
+                        <span className="icon"><ion-icon name="image"></ion-icon></span>
+                        <input 
+                        type="text" 
+                        name="imageUrl"
+                        value={values.imageUrl}
+                        onChange={changeHandler}
+                        required></input>
+                        <label>Image</label>
                     </div>
                     <div className="input-box">
                         <span className="icon"><ion-icon name="bed"></ion-icon></span>

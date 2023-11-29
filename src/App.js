@@ -2,11 +2,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
 import { Route, Routes, useNavigate } from "react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { AuthContext } from "./contexts/AuthContext";
-import * as authService from "./services/authService";
-import * as propertiesService from "./services/propertiesService";
+import { authServiceFactory} from "./services/authService";
+import {propertyServiceFactory} from "./services/propertiesService";
 
 import {Navigation} from "./components/Navigation";
 import { Home } from "./components/Home";
@@ -21,6 +21,10 @@ import { Register } from "./components/Register";
 function App() {
     const navigate = useNavigate();
     const [auth, setAuth] = useState({});
+    const [properties, setProperty] = useState([])
+    const authService = authServiceFactory(auth.accessToken);
+    const propertiesService  = propertyServiceFactory(auth.accessToken);
+
 
     const onLoginSubmit = async (data) => {
         try {
@@ -53,7 +57,7 @@ function App() {
         setAuth({})
     }
     const onCreateProperty = async (data) => {
-        const newGame = await propertiesService.create(data, auth.accessToken)
+        const newGame = await propertiesService.create(data)
 
         console.log("success!");
     }
@@ -68,7 +72,7 @@ function App() {
         username: auth.username,
         isAuthenticated: !!auth.accessToken,
     };
-
+    console.log(context["token"]);
     return (
         <AuthContext.Provider value={context}>
             <div>

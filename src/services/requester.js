@@ -1,7 +1,7 @@
 export const host = "http://localhost:3030"
 
 
-async function request(method, url, data, token) {
+async function request(method,token, url, data) {
 
     const options = {
         method,
@@ -14,8 +14,10 @@ async function request(method, url, data, token) {
     }
 
     if (token) {
-        const userToken = token.accessToken;
-        options.headers["X-Authorization"] = userToken;
+        options.headers = {
+            ...options.headers,
+            'X-Authorization': token,
+        };
     }
 
     try {
@@ -43,7 +45,12 @@ async function request(method, url, data, token) {
     }
 
 }
-export const get = request.bind(null, "GET");
-export const post = request.bind(null, "POST");
-export const put = request.bind(null, "PUT");
-export const del = request.bind(null, "DELETE");
+export const requestFactory = (token) => {
+    return {
+        get: request.bind(null, 'GET', token),
+        post: request.bind(null, 'POST', token),
+        put: request.bind(null, 'PUT', token),
+        patch: request.bind(null, 'PATCH', token),
+        delete: request.bind(null, 'DELETE', token),
+    }
+};
