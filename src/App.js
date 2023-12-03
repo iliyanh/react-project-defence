@@ -16,6 +16,7 @@ import { Login } from "./components/Login";
 import { Logout } from "./components/Logout";
 import { Register } from "./components/Register";
 import { PropertyDetails } from "./components/PropertyDetails";
+import { Edit } from "./components/Edit";
 
 
 
@@ -67,9 +68,11 @@ function App() {
         setProperty(state => [...state, newProperty])
         navigate("/catalog")
     }
-    // const onEditProperty = async (propertyId) => {
-
-    // }
+     const onEditProperty = async (values) => {
+        const result = await propertiesService.edit(values._id, values)
+        setProperty(state => state.map(x => x._id === values._id ? result : x))
+        navigate(`/catalog/${values._id}`)
+     }
 
     const context = {
         onLoginSubmit,
@@ -96,6 +99,7 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/catalog" element={<Catalog properties={properties}/>} />
                         <Route path="/catalog/:propertyId" element={<PropertyDetails />} />
+                        <Route path="/catalog/:propertyId/edit" element={<Edit onEditProperty={onEditProperty}/>} />
                     </Routes>
                 </main>
 

@@ -17,6 +17,7 @@ export const propertyServiceFactory = (token) => {
         return result
     }
     const deleteProperty = (propertyId) => request.delete(`/data/properties/${propertyId}`)
+    const edit = (propertyId, values) => request.put(`/data/properties/${propertyId}` ,values)
         
     
     return {
@@ -24,5 +25,6 @@ export const propertyServiceFactory = (token) => {
         getAll,
         getOne,
         delete: deleteProperty,
+        edit
     }
 }
