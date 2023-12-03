@@ -12,8 +12,13 @@ export const propertyServiceFactory = (token) => {
         const properties = Object.values(result);
         return properties
     }
+    const getOne = async (propertyId) => {
+        const result = await request.get(`/data/properties/${propertyId}`)
+        return result
+    }
     return {
         create,
-        getAll
+        getAll,
+        getOne,
     }
 }
