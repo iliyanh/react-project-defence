@@ -49,7 +49,7 @@ export const PropertyDetails = () => {
 
                     {isOwner ?
                         <div id="owner">
-                            <Link to={""} className="dtl-btn-edit">Edit</Link>
+                            <Link to={`/catalog/${property._id}/edit`} className="dtl-btn-edit">Edit</Link>
                             <button className="dtl-btn-delete" onClick={onDeleteClick}>Delete</button>
                         </div>
                         :
