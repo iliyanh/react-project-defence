@@ -16,9 +16,13 @@ export const propertyServiceFactory = (token) => {
         const result = await request.get(`/data/properties/${propertyId}`)
         return result
     }
+    const deleteProperty = (propertyId) => request.delete(`/data/properties/${propertyId}`)
+        
+    
     return {
         create,
         getAll,
         getOne,
+        delete: deleteProperty,
     }
 }

@@ -8,7 +8,7 @@ import { propertyServiceFactory } from "../services/propertiesService";
 
 export const PropertyDetails = () => {
     const { userId } = useContext(AuthContext)
-    //const navigate = useNavigate();
+    const navigate = useNavigate();
     const [property, setProperty] = useState({});
     const propertyService = useService(propertyServiceFactory);
     const { propertyId } = useParams();
@@ -20,7 +20,14 @@ export const PropertyDetails = () => {
             })
     }, [propertyId])
 
+
     const isOwner = property._ownerId === userId;
+
+    const onDeleteClick = () => {
+        propertyService.delete(property._id)
+        //TODO delete property from state
+        navigate("/catalog")
+    }
 
     return (
         <div className="details-container">
@@ -43,7 +50,7 @@ export const PropertyDetails = () => {
                     {isOwner ?
                         <div id="owner">
                             <Link to={""} className="dtl-btn-edit">Edit</Link>
-                            <Link to={""} className="dtl-btn-delete">Delete</Link>
+                            <button className="dtl-btn-delete" onClick={onDeleteClick}>Delete</button>
                         </div>
                         :
                         <div id="notOwner">

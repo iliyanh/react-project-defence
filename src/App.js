@@ -67,6 +67,9 @@ function App() {
         setProperty(state => [...state, newProperty])
         navigate("/catalog")
     }
+    // const onEditProperty = async (propertyId) => {
+
+    // }
 
     const context = {
         onLoginSubmit,
