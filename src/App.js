@@ -15,6 +15,7 @@ import { Create } from "./components/Create";
 import { Login } from "./components/Login";
 import { Logout } from "./components/Logout";
 import { Register } from "./components/Register";
+import { PropertyDetails } from "./components/PropertyDetails";
 
 
 
@@ -58,8 +59,7 @@ function App() {
         }
     }
     const onLogout = async () => {
-        //TODO
-        //await authService.logout()
+        await authService.logout()
         setAuth({})
     }
     const onCreateProperty = async (data) => {
@@ -87,11 +87,12 @@ function App() {
                 <main id="content">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/catalog" element={<Catalog properties={properties}/>} />
                         <Route path="/create" element={<Create onCreateProperty={onCreateProperty}/>} />
                         <Route path="/login" element={<Login />} />
                         <Route path="/logout" element={<Logout />} />
                         <Route path="/register" element={<Register />} />
+                        <Route path="/catalog" element={<Catalog properties={properties}/>} />
+                        <Route path="/catalog/:propertyId" element={<PropertyDetails />} />
                     </Routes>
                 </main>
 

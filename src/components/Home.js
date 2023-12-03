@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 export const Home = () => {
     return (
         <>
@@ -8,7 +10,7 @@ export const Home = () => {
                         
                         <h3>Join the countless individuals who have made us their top choice for buying and selling properties.Your dream home awaits—begin your search today.</h3>
                         
-                        <button type="submit" className="btn-explore">Explore</button>
+                        <Link to={"/catalog"}><button type="submit" className="btn-explore">Explore</button></Link>
                         
                     </div>
                 </section>
