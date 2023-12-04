@@ -25,6 +25,7 @@ export const PropertyDetails = () => {
 
     const onDeleteClick = () => {
         propertyService.delete(property._id)
+        
         //TODO delete property from state
         navigate("/catalog")
     }

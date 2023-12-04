@@ -1,4 +1,7 @@
+import { showErrorMessage, showSuccessMessage } from "../utils/errorHandler";
+
 export const host = "http://localhost:3030"
+
 
 
 async function request(method,token, url, data) {
@@ -32,7 +35,7 @@ async function request(method,token, url, data) {
             return {}
         } 
         const result = await response.json()
-        
+
         if (response.ok == false) {
             throw new Error(result.message);
         }
@@ -40,7 +43,7 @@ async function request(method,token, url, data) {
         return result;
 
     } catch (error) {
-        alert(error.message);
+        showErrorMessage(error.message)
         throw error
     }
 

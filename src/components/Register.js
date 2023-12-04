@@ -24,18 +24,16 @@ export const Register = () => {
                         type="text" 
                         name="username"
                         value={values.username}
-                        onChange={changeHandler}
-                        required></input>
+                        onChange={changeHandler}></input>
                         <label>Username</label>
                     </div>
                     <div className="input-box">
                         <span className="icon"><ion-icon name="mail"></ion-icon></span>
                         <input
-                            type="email"
+                            type="text"
                             name="email"
                             value={values.email}
-                            onChange={changeHandler}
-                            required></input>
+                            onChange={changeHandler}></input>
                         <label>Email</label>
                     </div>
                     <div className="input-box">
@@ -44,8 +42,7 @@ export const Register = () => {
                             type="password"
                             name="password"
                             value={values.password}
-                            onChange={changeHandler}
-                            required></input>
+                            onChange={changeHandler}></input>
                         <label>Password</label>
                     </div>
                     <div className="input-box">
@@ -54,9 +51,8 @@ export const Register = () => {
                             type="password"
                             name="repeatPassword"
                             value={values.repeatPassword}
-                            onChange={changeHandler}
-                            required></input>
-                        <label>Password</label>
+                            onChange={changeHandler}></input>
+                        <label>Repeat password</label>
                     </div>
                     <button type="submit" className="btn">Register</button>
                     <div className="login-register">

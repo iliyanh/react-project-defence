@@ -29,8 +29,7 @@ export const Login = () => {
                             id="email"
                             name={LoginFormKeys.Email}
                             value={values[LoginFormKeys.Email]}
-                            onChange={changeHandler}
-                            required></input>
+                            onChange={changeHandler}></input>
                         <label>Email</label>
                     </div>
                     <div className="input-box">
@@ -39,8 +38,7 @@ export const Login = () => {
                             type="password"
                             name={LoginFormKeys.Password}
                             value={values[LoginFormKeys.Password]}
-                            onChange={changeHandler}
-                            required></input>
+                            onChange={changeHandler}></input>
                         <label>Password</label>
                     </div>
                     <button type="submit" className="btn">Login</button>
