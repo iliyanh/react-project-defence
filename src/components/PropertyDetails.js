@@ -7,14 +7,13 @@ import { propertyServiceFactory } from "../services/propertiesService";
 
 
 export const PropertyDetails = () => {
-    const { userId, token } = useContext(AuthContext)
+    const { userId, isAuthenticated } = useContext(AuthContext)
     const navigate = useNavigate();
     const [property, setProperty] = useState({});
     const propertyService = useService(propertyServiceFactory);
     const { propertyId } = useParams();
     const isOwner = property._ownerId === userId;
-    const guest = token && !isOwner;
-    console.log(guest);
+    const guest = isAuthenticated && !isOwner;
 
     useEffect(() => {
         propertyService.getOne(propertyId)
@@ -23,13 +22,19 @@ export const PropertyDetails = () => {
             })
     }, [propertyId])
 
-
+    // const deleteProperty = (propertyId) => {
+    //     setProperty(state => state.filter(x => x._id !== propertyId));
+    // };
 
     const onDeleteClick = () => {
+        // eslint-disable-next-line no-restricted-globals
+        const result = confirm("Are you sure you want to delete this property?");
+        if(result){
         propertyService.delete(property._id)
 
         //TODO delete property from state
         navigate("/catalog")
+        }
     }
 
     return (

@@ -4,7 +4,7 @@ export const host = "http://localhost:3030"
 
 
 
-async function request(method, token, url, data) {
+async function request(method, url, data) {
 
     const options = {
         method,
@@ -16,12 +16,18 @@ async function request(method, token, url, data) {
         options.body = JSON.stringify(data);
     }
 
-    if (token) {
-        options.headers = {
-            ...options.headers,
-            'X-Authorization': token,
-        };
+    const serializedAuth = localStorage.getItem('auth');
+    if (serializedAuth) {
+        const auth = JSON.parse(serializedAuth);
+        
+        if (auth.accessToken) {
+            options.headers = {
+                ...options.headers,
+                'X-Authorization': auth.accessToken,
+            };
+        }
     }
+     
 
     try {
         const response = await fetch(host + url, options)
@@ -47,12 +53,12 @@ async function request(method, token, url, data) {
     }
 
 }
-export const requestFactory = (token) => {
+export const requestFactory = () => {
     return {
-        get: request.bind(null, 'GET', token),
-        post: request.bind(null, 'POST', token),
-        put: request.bind(null, 'PUT', token),
-        patch: request.bind(null, 'PATCH', token),
-        delete: request.bind(null, 'DELETE', token),
+        get: request.bind(null, 'GET'),
+        post: request.bind(null, 'POST'),
+        put: request.bind(null, 'PUT'),
+        patch: request.bind(null, 'PATCH'),
+        delete: request.bind(null, 'DELETE'),
     }
 };

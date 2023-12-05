@@ -1,5 +1,7 @@
 import { CatalogItem } from "./CatalogItem/CatalogItem"
 
+
+
 export const Catalog = ({
     properties
 }) => {

@@ -2,11 +2,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import './App.css';
 
 import { Route, Routes, useNavigate } from "react-router";
-import { useState, useEffect } from "react";
-import bcrypt from "bcryptjs-react";
+import { useState, useEffect, useContext } from "react";
+import { AuthContext, AuthProvider } from "./contexts/AuthContext";
 
-import { AuthContext } from "./contexts/AuthContext";
-import { authServiceFactory } from "./services/authService";
 import { propertyServiceFactory } from "./services/propertiesService";
 
 import { Navigation } from "./components/Navigation";
@@ -18,15 +16,11 @@ import { Logout } from "./components/Logout";
 import { Register } from "./components/Register";
 import { PropertyDetails } from "./components/PropertyDetails";
 import { Edit } from "./components/Edit";
-import { loginFormValidatior, registerFormValidator } from "./utils/FormValidator";
-import { showErrorMessage } from "./utils/errorHandler";
 
 function App() {
     const navigate = useNavigate();
-    const [auth, setAuth] = useState({});
-    const [properties, setProperty] = useState([])
-    const authService = authServiceFactory(auth.accessToken);
-    const propertiesService = propertyServiceFactory(auth.accessToken);
+    const [properties, setProperty] = useState([]);
+    const propertiesService = propertyServiceFactory();//auth.accessToken
 
 
     useEffect(() => {
@@ -36,34 +30,7 @@ function App() {
             })
     }, []);
 
-    const onLoginSubmit = async (data) => {
-        const isValid = loginFormValidatior(data)
 
-        if (isValid) {
-            try {
-            const result = await authService.login(data);
-            setAuth(result)
-            navigate("/catalog")
-            } catch (error) {
-                return
-            }
-        }
-    }
-    const onRegisterSubmit = async (values) => {
-        const { repeatPassword, ...registerData } = values
-
-        const isValid = registerFormValidator(values)
-        if (isValid) {
-
-            const result = await authService.register(registerData)
-            setAuth(result)
-            navigate("/catalog")
-        }
-    }
-    const onLogout = async () => {
-        await authService.logout()
-        setAuth({})
-    }
     const onCreateProperty = async (data) => {
         const newProperty = await propertiesService.create(data)
         setProperty(state => [...state, newProperty])
@@ -77,19 +44,8 @@ function App() {
         navigate(`/catalog/${values._id}`)
     }
 
-    const context = {
-        onLoginSubmit,
-        onRegisterSubmit,
-        onLogout,
-        userId: auth._id,
-        token: auth.accessToken,
-        userEmail: auth.email,
-        username: auth.username,
-        isAuthenticated: !!auth.accessToken,
-    };
-
     return (
-        <AuthContext.Provider value={context}>
+        <AuthProvider>
             <div>
                 <Navigation />
                 <main id="content">
@@ -105,7 +61,7 @@ function App() {
                     </Routes>
                 </main>
             </div >
-        </AuthContext.Provider>
+        </AuthProvider>
     );
 }
 
