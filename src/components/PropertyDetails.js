@@ -7,11 +7,14 @@ import { propertyServiceFactory } from "../services/propertiesService";
 
 
 export const PropertyDetails = () => {
-    const { userId } = useContext(AuthContext)
+    const { userId, token } = useContext(AuthContext)
     const navigate = useNavigate();
     const [property, setProperty] = useState({});
     const propertyService = useService(propertyServiceFactory);
     const { propertyId } = useParams();
+    const isOwner = property._ownerId === userId;
+    const guest = token && !isOwner;
+    console.log(guest);
 
     useEffect(() => {
         propertyService.getOne(propertyId)
@@ -21,11 +24,10 @@ export const PropertyDetails = () => {
     }, [propertyId])
 
 
-    const isOwner = property._ownerId === userId;
 
     const onDeleteClick = () => {
         propertyService.delete(property._id)
-        
+
         //TODO delete property from state
         navigate("/catalog")
     }
@@ -48,16 +50,18 @@ export const PropertyDetails = () => {
                     <p>{property.description}</p>
                 </div>
 
-                    {isOwner ?
-                        <div id="owner">
-                            <Link to={`/catalog/${property._id}/edit`} className="dtl-btn-edit">Edit</Link>
-                            <button className="dtl-btn-delete" onClick={onDeleteClick}>Delete</button>
-                        </div>
-                        :
-                        <div id="notOwner">
+                {isOwner && (
+                    <div id="owner">
+                        <Link to={`/catalog/${property._id}/edit`} className="dtl-btn-edit">Edit</Link>
+                        <button className="dtl-btn-delete" onClick={onDeleteClick}>Delete</button>
+                    </div>
+                )}
+                {guest && (
+                    <div id="notOwner">
                         <Link to={""} className="dtl-btn-buy">Buy</Link>
-                        </div>
-                    }
+                    </div>
+                )}
+
 
 
             </div>

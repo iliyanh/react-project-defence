@@ -19,6 +19,7 @@ import { Register } from "./components/Register";
 import { PropertyDetails } from "./components/PropertyDetails";
 import { Edit } from "./components/Edit";
 import { loginFormValidatior, registerFormValidator } from "./utils/FormValidator";
+import { showErrorMessage } from "./utils/errorHandler";
 
 function App() {
     const navigate = useNavigate();
@@ -39,12 +40,13 @@ function App() {
         const isValid = loginFormValidatior(data)
 
         if (isValid) {
-
-            //const { email, password } = data;
+            try {
             const result = await authService.login(data);
             setAuth(result)
             navigate("/catalog")
-
+            } catch (error) {
+                return
+            }
         }
     }
     const onRegisterSubmit = async (values) => {

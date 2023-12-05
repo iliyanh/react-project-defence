@@ -4,7 +4,7 @@ export const host = "http://localhost:3030"
 
 
 
-async function request(method,token, url, data) {
+async function request(method, token, url, data) {
 
     const options = {
         method,
@@ -26,14 +26,13 @@ async function request(method,token, url, data) {
     try {
         const response = await fetch(host + url, options)
 
-
         // if (response.status === 403) {
-        //     localStorage.removeItem("user");
+        //     throw new Error(response.message);
         // }
 
         if (response.status === 204) {
             return {}
-        } 
+        }
         const result = await response.json()
 
         if (response.ok == false) {
@@ -44,7 +43,7 @@ async function request(method,token, url, data) {
 
     } catch (error) {
         showErrorMessage(error.message)
-        throw error
+        throw new Error(error.message)
     }
 
 }
