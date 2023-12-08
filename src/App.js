@@ -15,6 +15,7 @@ import { PropertyDetails } from "./components/PropertyDetails";
 import { Edit } from "./components/Edit";
 import { RouteGuard } from "./components/common/RouteGuard";
 import { PropertyProvider } from "./contexts/PropertyContext";
+import { Comments } from "./components/Comments/Comments";
 
 function App() {
     return (
@@ -27,6 +28,7 @@ function App() {
                             <Route path="/" element={<Home />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/logout" element={<Logout />} />
+                            <Route path="/comments" element={<Comments />} />
                             <Route path="/register" element={<Register />} />
                             <Route path="/create" element={
                                 <RouteGuard>

@@ -18,6 +18,7 @@ left: 0;
 width: 100%;
 padding: 20px 100px;
 background: transparent;
+backdrop-filter: blur(20px);
 display: flex;
 justify-content: space-between;
 align-items: center;
@@ -79,7 +80,7 @@ z-index: 100;
 }
 .wrapper-home {
   position: relative;
-  width: 105em;
+  width: 100%;
   height: 400px;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, .5);
@@ -89,6 +90,7 @@ z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: auto;
 }
 .wrapper-catalog {
   position: relative;
@@ -318,7 +320,7 @@ offer-list {
   font-size: 16px;
   -webkit-transform: translate(0);
   transform: translate(0);
-  background-image: linear-gradient(45deg, #732E4D, #AC6897);
+  background-image: linear-gradient(45deg, #772d4f, #ae6597);
   padding: 0.7em 2em;
   border-radius: 65px;
   box-shadow: 1px 1px 10px rgba(255, 255, 255, 0.438);
@@ -349,31 +351,9 @@ offer-list {
   text-align: center;
   padding-top: 30px;
 }
-
-/* _________________________ */
-/* .wrapper-details{
-  position: relative;
-  width: 90em;
-  height: 800px;
-  background: transparent;
-  border: 2px solid rgba(255, 255, 255, .5);
-  border-radius: 20px;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
-  display: flex;
-}
-.wrapper-details .img-wrapper img{
-  flex: 1;
-  margin-top: 50px;
-  margin-left: 50px;
-}
-.wrapper-details info-wrapper {
-  margin-left: 10em;
-  flex: 2;
-} */
 .details-container {
-  width: 90em;
-  height: 800px;
+  width: 100%;
+  height: 100%;
   margin: 50px auto;
   background: transparent;
   border: 2px solid rgba(255, 255, 255, .5);
@@ -476,3 +456,67 @@ offer-list {
   text-decoration: none;
   color: white;
 }
+
+/* comments
+____________________________ */
+
+.create-comment .form textarea {
+  resize: none;
+  width: 350px;
+  height: 150px;
+  margin-top: 22px;
+  margin-bottom: 28px;
+  padding: 5px;
+}
+
+.details-comments {
+  display: table-cell;
+}
+.details-comments h2{
+  color: white;
+}
+
+.create-comment {
+  margin: auto;
+  margin-top: 40px;
+  position: center;
+  text-align: center;
+  width: 700px;
+  height: auto;
+  border-radius: 20px;
+  padding: 40px;
+  box-sizing: border-box;
+  background: transparent;
+  backdrop-filter: blur(20px);
+  border: 2px solid rgba(255, 255, 255, .5);
+  box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+}
+
+.create-comment label {
+  color: white;
+  font-size: 28px;
+  text-align: center;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.info-section .details-comments li {
+  width: 400px;
+  display: inline-block;
+  position: static;
+  margin: 20px auto 25px auto;
+  box-shadow: 8px 8px 8px 0 rgba(0, 0, 0, 0.2), 12px 12px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 16px;
+  margin-left: 60px;
+  background: white;
+  color: black;
+}
+.comment p {
+  padding: 16px;
+}
+.no-comment {
+  font-size: 28px;
+  color: white;
+}
+
+
