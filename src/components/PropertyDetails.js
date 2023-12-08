@@ -4,12 +4,14 @@ import { AuthContext } from "../contexts/AuthContext";
 
 import { useService } from "../hooks/useService";
 import { propertyServiceFactory } from "../services/propertiesService";
+import { PropertyContext } from "../contexts/PropertyContext";
 
 
 export const PropertyDetails = () => {
     const { userId, isAuthenticated } = useContext(AuthContext)
+    const { deleteProperty } = useContext(PropertyContext)
     const navigate = useNavigate();
-    const [property, setProperty] = useState({});
+    const [property, setProperty] = useState([]);
     const propertyService = useService(propertyServiceFactory);
     const { propertyId } = useParams();
     const isOwner = property._ownerId === userId;
@@ -22,15 +24,12 @@ export const PropertyDetails = () => {
             })
     }, [propertyId])
 
-    // const deleteProperty = (propertyId) => {
-    //     setProperty(state => state.filter(x => x._id !== propertyId));
-    // };
-
     const onDeleteClick = () => {
         // eslint-disable-next-line no-restricted-globals
         const result = confirm("Are you sure you want to delete this property?");
         if(result){
         propertyService.delete(property._id)
+        deleteProperty(property._id)
 
         //TODO delete property from state
         navigate("/catalog")
@@ -66,6 +65,15 @@ export const PropertyDetails = () => {
                         <Link to={""} className="dtl-btn-buy">Buy</Link>
                     </div>
                 )}
+                <div className="comment-section">
+                    <article className="create-comment">
+                        <label>Add new comment:</label>
+                        <form className="comment-form">
+                            <textarea name="comment"></textarea>
+                            <input className="add-comment-btn" type="submit" value="Add comment" />
+                        </form>
+                    </article>
+                </div>
 
 
 

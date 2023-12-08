@@ -1,10 +1,11 @@
+import { useContext } from "react"
 import { CatalogItem } from "./CatalogItem/CatalogItem"
+import { PropertyContext } from "../../contexts/PropertyContext"
 
 
 
-export const Catalog = ({
-    properties
-}) => {
+export const Catalog = () => {
+    const { properties} = useContext(PropertyContext);
     return (
         <div className="wrapper-catalog">
             <section className="house-market">
