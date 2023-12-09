@@ -1,6 +1,6 @@
 import { useContext } from "react"
-import { useForm } from "../hooks/useForm"
-import { PropertyContext } from "../contexts/PropertyContext"
+import { useForm } from "../../hooks/useForm"
+import { PropertyContext } from "../../contexts/PropertyContext"
 
 
 export const Create = () => {

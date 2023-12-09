@@ -1,10 +1,10 @@
-import { useForm } from "../hooks/useForm"
+import { useForm } from "../../hooks/useForm"
 import { useParams } from "react-router"
 import { useContext, useEffect } from "react";
 
-import { useService } from "../hooks/useService";
-import { propertyServiceFactory } from "../services/propertiesService";
-import { PropertyContext } from "../contexts/PropertyContext";
+import { useService } from "../../hooks/useService";
+import { propertyServiceFactory } from "../../services/propertiesService";
+import { PropertyContext } from "../../contexts/PropertyContext";
 
 export const Edit = () => {
     const { propertyId } = useParams();

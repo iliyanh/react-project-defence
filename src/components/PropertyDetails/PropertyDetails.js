@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState } from "react"
 import { useParams, useNavigate, Link } from "react-router-dom"
-import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../../contexts/AuthContext";
 
-import { useService } from "../hooks/useService";
-import { propertyServiceFactory } from "../services/propertiesService";
-import { PropertyContext } from "../contexts/PropertyContext";
-import { Comments } from "./Comments/Comments";
-import * as commentService from "../services/commentService";
+import { useService } from "../../hooks/useService";
+import { propertyServiceFactory } from "../../services/propertiesService";
+import { PropertyContext } from "../../contexts/PropertyContext";
+import { Comments } from "../Comments/Comments";
+import * as commentService from "../../services/commentService";
 
 
 export const PropertyDetails = () => {
-    const { userId, isAuthenticated } = useContext(AuthContext)
+    const { userId, isAuthenticated, userEmail } = useContext(AuthContext)
     const { deleteProperty } = useContext(PropertyContext)
     const [property, setProperty] = useState([]);
     const navigate = useNavigate();
@@ -26,11 +26,11 @@ export const PropertyDetails = () => {
             propertyService.getOne(propertyId),
             commentService.getAll(propertyId)
         ]).then(([propertData, commentsData]) => {
-                setProperty({
-                    ...propertData,
-                    commentsData,
-                })
+            setProperty({
+                ...propertData,
+                commentsData,
             })
+        })
     }, [propertyId])
 
     const onDeleteClick = () => {
@@ -46,13 +46,19 @@ export const PropertyDetails = () => {
     }
     const onCommentSubmit = async (values) => {
 
-         const response = await commentService.create(propertyId, values.comment)
-         console.log(response);
+        const response = await commentService.create(propertyId, values.comment)
 
-         setProperty(state => ({
+        setProperty(state => ({
             ...state,
-            commentsData: [...state.commentsData, response]
-         }))
+            commentsData: [...state.commentsData,
+            {
+                ...response,
+                author: {
+                    email: userEmail
+                }
+            }
+            ],
+        }))
     }
 
     return (
@@ -86,16 +92,15 @@ export const PropertyDetails = () => {
                             <ul>
                                 {property.commentsData && property.commentsData.map(x =>
                                     <li key={x._id} className="comment">
-                                        <p>{x.author["email"]}: {x.comment}</p>
+                                        <p>{x.author.email}: {x.comment}</p>
                                     </li>
                                 )}
-
                             </ul>
+                            </div>
                             {!property.commentsData?.length && (
                                 <p className="no-comment">No comments.</p>
 
                             )}
-                        </div>
                     </div>
                 </div>
             </div>
@@ -103,7 +108,7 @@ export const PropertyDetails = () => {
                 <div className="notOwner" id="notOwner">
                     <Comments onCommentSubmit={onCommentSubmit} />
                 </div>
-            )} 
+            )}
 
         </>
     )
