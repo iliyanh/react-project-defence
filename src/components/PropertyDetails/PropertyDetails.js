@@ -90,11 +90,11 @@ export const PropertyDetails = () => {
                         <div className="details-comments">
                             <h2>Comments:</h2>
                             <ul>
-                                {property.commentsData && property.commentsData.map(x =>
+                                {property.commentsData && property.commentsData.map(x =>(
                                     <li key={x._id} className="comment">
                                         <p>{x.author.email}: {x.comment}</p>
                                     </li>
-                                )}
+                                ))}
                             </ul>
                             </div>
                             {!property.commentsData?.length && (
