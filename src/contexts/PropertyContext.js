@@ -32,19 +32,19 @@ export const PropertyProvider = ({
 
         navigate(`/catalog/${values._id}`)
     }
-const contextValue = {
-    properties,
-deleteProperty,
-onCreateProperty,
-onEditProperty,
-}
+    const contextValue = {
+        properties,
+        deleteProperty,
+        onCreateProperty,
+        onEditProperty,
+    }
 
-return (
-    <>
-        <PropertyContext.Provider value={contextValue}>
-            {children}
-        </PropertyContext.Provider>
-    </>
-)
+    return (
+        <>
+            <PropertyContext.Provider value={contextValue}>
+                {children}
+            </PropertyContext.Provider>
+        </>
+    )
 
 }
