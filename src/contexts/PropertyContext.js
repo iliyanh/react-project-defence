@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom";
 import { propertyServiceFactory } from "../services/propertiesService";
+import { createFormValidator } from "../utils/FormValidator";
 
 export const PropertyContext = createContext();
 
@@ -21,9 +22,12 @@ export const PropertyProvider = ({
         setProperty(state => state.filter(x => x._id !== propertyId));
     };
     const onCreateProperty = async (data) => {
+        const isValid = createFormValidator(data)
+        if(isValid){
         const newProperty = await propertiesService.create(data)
         setProperty(state => [...state, newProperty])
         navigate("/catalog")
+        }
     }
     const onEditProperty = async (values) => {
         const result = await propertiesService.edit(values._id, values)

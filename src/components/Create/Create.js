@@ -27,8 +27,7 @@ export const Create = () => {
                         type="text" 
                         name="address"
                         value={values.address}
-                        onChange={changeHandler}
-                        required></input>
+                        onChange={changeHandler}></input>
                         <label>Address</label>
                     </div>
                     <div className="input-box">
@@ -37,8 +36,7 @@ export const Create = () => {
                         type="text" 
                         name="type"
                         value={values.type}
-                        onChange={changeHandler}
-                        required></input>
+                        onChange={changeHandler}></input>
                         <label>Type</label>
                     </div>
                     <div className="input-box">
@@ -47,18 +45,16 @@ export const Create = () => {
                         type="text" 
                         name="imageUrl"
                         value={values.imageUrl}
-                        onChange={changeHandler}
-                        required></input>
+                        onChange={changeHandler}></input>
                         <label>Image</label>
                     </div>
                     <div className="input-box">
                         <span className="icon"><ion-icon name="bed"></ion-icon></span>
                         <input 
-                        type="text" 
+                        type="text"
                         name="bedrooms"
                         value={values.bedrooms}
-                        onChange={changeHandler}
-                        required></input>
+                        onChange={changeHandler}></input>
                         <label>Bedrooms</label>
                     </div>
                     <div className="input-box">
@@ -67,8 +63,7 @@ export const Create = () => {
                         type="text" 
                         name="size"
                         value={values.size}
-                        onChange={changeHandler}
-                        required></input>
+                        onChange={changeHandler}></input>
                         <label>Size</label>
                     </div>
                     <div className="input-box">
@@ -77,8 +72,7 @@ export const Create = () => {
                         type="text" 
                         name="price"
                         value={values.price}
-                        onChange={changeHandler}
-                        required></input>
+                        onChange={changeHandler}></input>
                         <label>Price</label>
                     </div>
                     <div className="input-box">
@@ -87,8 +81,7 @@ export const Create = () => {
                         type="text" 
                         name="description"
                         value={values.description}
-                        onChange={changeHandler}
-                        required></input>
+                        onChange={changeHandler}></input>
                         <label>Description</label>
                     </div>
 
